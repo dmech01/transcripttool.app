@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'No transcript found' }, { status: 404 });
     }
 
-    const segments: TranscriptSegment[] = data.transcript.map((item: any) => ({
+    const segments: TranscriptSegment[] = data.transcript.map((item: { text: string; start: number; duration: number }) => ({
       text: item.text,
       offset: item.start,
       duration: item.duration,
