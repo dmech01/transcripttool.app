@@ -45,7 +45,7 @@ export default function SearchBar() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Paste YouTube URL or enter video ID"
-          className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+          className="w-full pl-12 pr-4 py-4 text-lg text-gray-900 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm placeholder:text-gray-400"
         />
       </div>
       {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
