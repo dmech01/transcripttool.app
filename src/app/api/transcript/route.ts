@@ -6,6 +6,12 @@ interface TranscriptSegment {
   duration: number;
 }
 
+interface TranscriptItem {
+  text: string;
+  start: number;
+  duration: number;
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const videoId = searchParams.get('videoId');
@@ -37,7 +43,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'No transcript found' }, { status: 404 });
     }
 
-    const segments: TranscriptSegment[] = data.transcript.map((item: { text: string; start: number; duration: number }) => ({
+    const segments: TranscriptSegment[] = data.transcript.map((item: TranscriptItem) => ({
       text: item.text,
       offset: item.start,
       duration: item.duration,
