@@ -2,11 +2,8 @@ import { notFound } from 'next/navigation';
 import { getTranscript } from '@/lib/transcript';
 import TranscriptPageClient from './TranscriptPageClient';
 
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  return [];
-}
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface PageProps {
   params: Promise<{ videoId: string }>;
@@ -26,7 +23,8 @@ export default async function Page({ params }: PageProps) {
   let transcript;
   try {
     transcript = await getTranscript(videoId);
-  } catch {
+  } catch (error) {
+    console.error('Failed to fetch transcript:', error);
     notFound();
   }
 
